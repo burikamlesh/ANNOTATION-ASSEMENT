@@ -1,0 +1,32 @@
+import { User } from "./task";
+
+export type TaskUpdatedEvent = {
+  kind: "task.updated";
+  payload: {
+    id: string;
+    status: string;
+    updatedAt: number;
+  };
+};
+
+export type TaskAssignedEvent = {
+  kind: "task.assigned";
+  payload: {
+    id: string;
+    assignee: User | null;
+  };
+};
+
+export type AnnotationCreatedEvent = {
+  kind: "annotation.created";
+  payload: {
+    taskId: string;
+    by: string;
+    at: number;
+  };
+};
+
+export type WsEvent =
+  | TaskUpdatedEvent
+  | TaskAssignedEvent
+  | AnnotationCreatedEvent;

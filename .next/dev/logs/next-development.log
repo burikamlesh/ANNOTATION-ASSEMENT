@@ -1,0 +1,20 @@
+{"timestamp":"00:00:02.729","source":"Server","level":"LOG","message":""}
+{"timestamp":"00:00:16.892","source":"Browser","level":"INFO","message":"%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold"}
+{"timestamp":"00:01:30.166","source":"Server","level":"LOG","message":"  Reload env: .env.local"}
+{"timestamp":"00:01:30.426","source":"Server","level":"LOG","message":"✓ Compiled in 160ms"}
+{"timestamp":"00:01:31.028","source":"Browser","level":"LOG","message":"Disconnected"}
+{"timestamp":"00:01:31.028","source":"Browser","level":"LOG","message":"WS Connected"}
+{"timestamp":"00:01:59.034","source":"Browser","level":"LOG","message":"Disconnected"}
+{"timestamp":"00:02:00.028","source":"Browser","level":"LOG","message":"Disconnected"}
+{"timestamp":"00:02:03.033","source":"Browser","level":"LOG","message":"Disconnected"}
+{"timestamp":"00:02:06.039","source":"Browser","level":"LOG","message":"Disconnected"}
+{"timestamp":"00:02:14.059","source":"Browser","level":"LOG","message":"Disconnected"}
+{"timestamp":"00:02:16.904","source":"Browser","level":"INFO","message":"%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold"}
+{"timestamp":"00:02:16.955","source":"Browser","level":"LOG","message":"Disconnected"}
+{"timestamp":"00:02:17.954","source":"Browser","level":"LOG","message":"Disconnected"}
+{"timestamp":"00:02:19.961","source":"Browser","level":"LOG","message":"Disconnected"}
+{"timestamp":"00:02:25.027","source":"Browser","level":"LOG","message":"Disconnected"}
+{"timestamp":"00:02:33.028","source":"Browser","level":"LOG","message":"Disconnected"}
+{"timestamp":"00:02:50.029","source":"Browser","level":"LOG","message":"WS Connected"}
+{"timestamp":"00:02:54.434","source":"Browser","level":"INFO","message":"%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold"}
+{"timestamp":"00:02:54.471","source":"Browser","level":"LOG","message":"WS Connected"}
