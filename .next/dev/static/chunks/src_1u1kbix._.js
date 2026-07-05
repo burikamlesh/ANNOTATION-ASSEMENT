@@ -211,7 +211,6 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$db$2f$localDb$2e$ts__
 ;
 async function syncTasks(rawTasks) {
     const normalized = rawTasks.map(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$utils$2f$normalize$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["normalizeTask"]);
-    // Don't await if you want background write
     void (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$db$2f$localDb$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["saveTasks"])(normalized);
     return normalized;
 }

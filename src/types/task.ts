@@ -1,13 +1,4 @@
-// export interface Task {
-//   id: string;
-//   title: string;
-//   description: string;
-//   status: "Pending" | "Running" | "Completed" | "Failed";
-//     priority: "Low" | "Medium" | "High";
-//      annotationCount?: number;
-//   createdAt: string;
-//   updatedAt: string;
-// }
+
 export type TaskType =
   | "image"
   | "audio"

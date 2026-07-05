@@ -8,7 +8,7 @@ export async function syncTasks(
 ): Promise<Task[]> {
   const normalized = rawTasks.map(normalizeTask);
 
-  // Don't await if you want background write
+  
   void saveTasks(normalized);
 
   return normalized;

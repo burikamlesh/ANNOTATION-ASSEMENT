@@ -46,7 +46,7 @@ export default function TaskDetail({ task }: Props) {
           </h2>
         </div>
 
-        {/* Description Section */}
+       
         <div className="mb-8">
           <h3 className="text-xs font-semibold text-zinc-400 uppercase tracking-wider mb-2">
             Description
@@ -60,7 +60,7 @@ export default function TaskDetail({ task }: Props) {
           </p>
         </div>
 
-        {/* Metadata Grid */}
+       
         <h3 className="text-xs font-semibold text-zinc-400 uppercase tracking-wider mb-3">
           Details
         </h3>
@@ -111,7 +111,7 @@ export default function TaskDetail({ task }: Props) {
         </div>
       </div>
 
-      {/* Footer Timestamp */}
+      
       <div className="mt-8 pt-4 border-t border-zinc-900 flex justify-between items-center text-xs text-zinc-500 font-mono">
         <span>Updated:</span>
         <span>{task.createdAt || "Just now"}</span>

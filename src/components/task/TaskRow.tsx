@@ -29,19 +29,19 @@ export default function TaskRow({ task, onSelect }: Props) {
       className=" cursor-pointer hover:bg-zinc-900/40 transition-colors"
       onClick={() => onSelect(task.id)}
     >
-      {/* Title column */}
+      
       <td className="px-4 py-3 text-sm text-zinc-200 font-medium truncate">
         {task.title || (
           <span className="text-zinc-600 italic">— No Title —</span>
         )}
       </td>
 
-      {/* Type column */}
+     
       <td className="px-4 py-3 text-sm text-zinc-400">
         {task.type || <span className="text-zinc-600 italic">—</span>}
       </td>
 
-      {/* Status Column */}
+     
       <td className="px-4 py-3 text-sm">
         {task.status ? (
           <span

@@ -807,53 +807,6 @@ __turbopack_context__.s([
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$build$2f$polyfills$2f$process$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = /*#__PURE__*/ __turbopack_context__.i("[project]/node_modules/next/dist/build/polyfills/process.js [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/compiled/react/index.js [app-client] (ecmascript)");
 var _s = __turbopack_context__.k.signature();
-// "use client";
-// import { useEffect, useRef, useState } from "react";
-// export default function useTaskSummary(taskId?: string) {
-//   const [summary, setSummary] = useState("");
-//   const [loading, setLoading] = useState(false);
-//   const controllerRef = useRef<AbortController | null>(null);
-//   useEffect(() => {
-//     if (!taskId) return;
-//     // Cancel previous request
-//     controllerRef.current?.abort();
-//     const controller = new AbortController();
-//     controllerRef.current = controller;
-//     setSummary("");
-//     setLoading(true);
-//     fetch(
-//       `${process.env.NEXT_PUBLIC_API_BASE_URL}/tasks/${taskId}/summary`,
-//       {
-//         signal: controller.signal,
-//       }
-//     )
-//       .then(async (response) => {
-//         if (!response.body) return;
-//         const reader = response.body.getReader();
-//         const decoder = new TextDecoder();
-//         while (true) {
-//           const { value, done } = await reader.read();
-//           if (done) break;
-//           const chunk = decoder.decode(value);
-//           setSummary((prev) => prev + chunk);
-//         }
-//         setLoading(false);
-//       })
-//       .catch((err) => {
-//         if (err.name !== "AbortError") {
-//           console.error(err);
-//         }
-//         setLoading(false);
-//       });
-//     return () => {
-//       controller.abort();
-//     };
-//   }, [taskId]);
-//   return {
-//     summary,
-//     loading,
-//   };
-// }
 "use client";
 ;
 function useTaskSummary(taskId) {
@@ -864,7 +817,6 @@ function useTaskSummary(taskId) {
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
         "useTaskSummary.useEffect": ()=>{
             if (!taskId) return;
-            // Cancel previous ongoing stream request instantly
             controllerRef.current?.abort();
             const controller = new AbortController();
             controllerRef.current = controller;
@@ -877,34 +829,27 @@ function useTaskSummary(taskId) {
                     if (!response.body) return;
                     const reader = response.body.getReader();
                     const decoder = new TextDecoder();
-                    let buffer = ""; // Partial buffers ko hold karne ke liye wrapper
+                    let buffer = "";
                     while(true){
                         const { value, done } = await reader.read();
                         if (done) break;
-                        // Buffer stream data assemble karein
                         buffer += decoder.decode(value, {
                             stream: true
                         });
-                        // SSE frames standard newlines (\n) par divide hote hain
                         const lines = buffer.split("\n");
-                        // Aakhri incomplete chunk line ko buffer me hold rakhein
                         buffer = lines.pop() || "";
                         for (const line of lines){
                             const trimmedLine = line.trim();
                             if (!trimmedLine) continue;
                             if (trimmedLine.startsWith("data: ")) {
                                 const rawData = trimmedLine.replace("data: ", "").trim();
-                                // Streaming boundary end parameters skip karein
                                 if (rawData === '"end"' || rawData === "end") continue;
                                 try {
-                                    // CRUCIAL SYNC STEP: JSON.parse double escaped string blocks ("\\n") 
-                                    // ko clean system native line-breaks (\n) me normalize karega
                                     const parsedContent = JSON.parse(rawData);
                                     setSummary({
                                         "useTaskSummary.useEffect": (prev)=>prev + parsedContent
                                     }["useTaskSummary.useEffect"]);
                                 } catch (e) {
-                                    // Safe fallback agar stream chunk plain raw encoded string text hai
                                     setSummary({
                                         "useTaskSummary.useEffect": (prev)=>prev + rawData
                                     }["useTaskSummary.useEffect"]);
@@ -919,7 +864,6 @@ function useTaskSummary(taskId) {
                     if (err.name !== "AbortError") {
                         console.error("Stream Fetch Error:", err);
                     }
-                    // Faillures silent lock na ho, isliye trigger clear rakhein
                     setLoading(false);
                 }
             }["useTaskSummary.useEffect"]);
