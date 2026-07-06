@@ -1,4 +1,6 @@
-type MessageHandler = (event: any) => void;
+import type { WsEvent } from "@/src/types/websocket";
+
+type MessageHandler = (event: WsEvent) => void;
 
 
 class WebSocketManager {

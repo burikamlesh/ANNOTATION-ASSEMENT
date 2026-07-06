@@ -3,7 +3,7 @@
 "use client";
 
 import ReactMarkdown from "react-markdown";
-import DOMPurify from "isomorphic-dompurify"; 
+
 interface Props {
   summary: string;
   loading: boolean;
@@ -33,22 +33,14 @@ export default function TaskSummary({ summary, loading }: Props) {
         )}
 
       
+        {/*
+          react-markdown does not parse embedded raw HTML into real DOM nodes
+          unless the rehype-raw plugin is added. We deliberately don't add it,
+          so any <script>/onerror payload in the streamed markdown is rendered
+          as inert, escaped text (&lt;script&gt;...) rather than executed.
+        */}
         <div className="prose prose-invert max-w-none text-sm text-zinc-300 leading-relaxed">
-          <ReactMarkdown
-            components={{
-              
-              html: ({ node }: any) => {
-                
-                const raw = (node && (node.value ?? node.children?.[0]?.value)) || "";
-                const cleanHtml = DOMPurify.sanitize(String(raw), {
-                  ALLOWED_TAGS: ["b", "i", "em", "strong", "code"],
-                });
-                return <span dangerouslySetInnerHTML={{ __html: cleanHtml }} />;
-              },
-            }}
-          >
-            {summary}
-          </ReactMarkdown>
+          <ReactMarkdown>{summary}</ReactMarkdown>
         </div>
       </div>
     </div>

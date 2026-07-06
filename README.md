@@ -1,38 +1,42 @@
-# ANNOTATION-ASSEMENT
-A modern .
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Annotation Activity Console
 
-## Getting Started
+An internal console for annotators' tasks (image/audio/text): status, assignee, live updates over WebSocket, and a streamed AI summary rendered as sanitized markdown.
 
-First, run the development server:
+## Running it
+
+Two servers are needed: the mock backend and the Next.js app.
+
+**1. Mock server** (REST + WebSocket + streaming endpoint, runs on `http://localhost:4000`):
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+cd mock-server
+npm install
+npm run mock
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+**2. App** (in a separate terminal, from the repo root):
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+npm install
+npm run dev
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Open [http://localhost:3000](http://localhost:3000).
 
-## Learn More
+## Tests
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+npm test
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Runs the Jest/RTL suite: the normalizer, `selectFilteredTasks`, a filtering interaction test, and an XSS-safety test for the streamed markdown renderer.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Environment
 
-## Deploy on Vercel
+The app reads the mock server's base URL from env vars (see `.env.local`):
+- `NEXT_PUBLIC_API_BASE_URL` — REST base, e.g. `http://localhost:4000/api`
+- `NEXT_PUBLIC_WS_URL` — WebSocket URL, e.g. `ws://localhost:4000/ws`
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Notes for reviewers
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+See [`DECISIONS.md`](./DECISIONS.md) for the full writeup: normalization strategy, state/architecture tradeoffs, how the streamed markdown is sanitized (and where), the IndexedDB caching approach, the bug-hunt fixes in `src/buggy/TaskTicker.tsx`, and what was deliberately left out given the time budget.

@@ -59,20 +59,14 @@ export default function TaskRow({ task, onSelect }: Props) {
       
       <td className="px-4 py-3 text-sm text-zinc-400">
         {task.assignee ? (
-          
-          typeof task.assignee === "string" ? (
-            task.assignee
-          ) : (
-           
-            (task.assignee as any).name ?? String(task.assignee)
-          )
+          task.assignee.name
         ) : (
           <span className="text-zinc-600">Unassigned</span>
         )}
       </td>
 
       <td className="px-4 py-3 text-sm text-right text-zinc-400 font-mono">
-        {(task as any).annotationCount ?? 0}
+        {task.annotationCount ?? 0}
       </td>
     </tr>
   );

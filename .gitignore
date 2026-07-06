@@ -4,3 +4,4 @@ mock-server/node_modules/
 # .env.local
 dist/
 coverage/
+*.tsbuildinfo

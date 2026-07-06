@@ -8,7 +8,7 @@ const typeMap: Record<string, TaskType> = {
 };
 
 const statusMap: Record<string, TaskStatus> = {
- odo: "TODO",
+  todo: "TODO",
   in_progress: "IN_PROGRESS",
   inprogress: "IN_PROGRESS",
   done: "DONE",
@@ -16,13 +16,15 @@ const statusMap: Record<string, TaskStatus> = {
   blocked: "BLOCKED",
 };
 
+export function normalizeStatus(status: string): TaskStatus {
+  return statusMap[status.toLowerCase()] ?? "UNKNOWN";
+}
+
 export function normalizeTask(raw: RawTask): Task {
   const normalizedType =
     typeMap[raw.type.toLowerCase()] ?? "unknown";
 
-  const normalizedStatus =
-    statusMap[raw.status.toLowerCase()] ??
-    "UNKNOWN";
+  const normalizedStatus = normalizeStatus(raw.status);
 
   const updatedAt =
     typeof raw.updatedAt === "string"

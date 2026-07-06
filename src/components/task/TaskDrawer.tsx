@@ -66,20 +66,20 @@ export default function TaskDrawer({ task }: Props) {
           </div>
         </div>
 
-        {((task as any).meta?.priority || (task as any).priority) && (
+        {task.priority && (
           <div className="border-t border-zinc-900/60 pt-2">
             <span className="text-xs text-zinc-500 block mb-0.5">Priority</span>
             <span className="text-rose-400 font-medium capitalize">
-              {(task as any).meta?.priority || (task as any).priority}
+              {task.priority}
             </span>
           </div>
         )}
 
-        {((task as any).meta?.note || (task as any).note) && (
+        {task.note && (
           <div className="border-t border-zinc-900/60 pt-2">
             <span className="text-xs text-zinc-500 block mb-0.5">Notes</span>
             <p className="text-zinc-400 text-xs italic bg-zinc-900/30 border border-zinc-900 rounded p-2 mt-1">
-              {(task as any).meta?.note || (task as any).note}
+              {task.note}
             </p>
           </div>
         )}

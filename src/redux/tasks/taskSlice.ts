@@ -56,6 +56,16 @@ setSortOrder(state, action: PayloadAction<string>) {
     setCacheStale(state, action: PayloadAction<boolean>) {
       state.isCacheStale = action.payload;
     },
+
+    incrementAnnotationCount(
+      state,
+      action: PayloadAction<{ taskId: string }>
+    ) {
+      const task = state.entities[action.payload.taskId];
+      if (task) {
+        task.annotationCount += 1;
+      }
+    },
   },
 });
 
@@ -73,6 +83,7 @@ export const {
   setTypeFilter,
   setPagination,
   setCacheStale,
+  incrementAnnotationCount,
 } = taskSlice.actions;
 
 export default taskSlice.reducer;
